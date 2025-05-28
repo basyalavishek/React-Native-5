@@ -11,26 +11,7 @@ export const AuthContext = createContext({
 function AuthContextProvider({ children }) {
   const [authToken, setAuthToken] = useState();
 
-  useEffect(() => {
-    async function fetchToken() {
-      const storedToken = await AsyncStorage.getItem("token");
 
-      if (storedToken) {
-        setAuthToken(storedToken);
-      }
-    }
-    fetchToken();
-  }, []); //   // This function runs only one time when the app starts (because of the empty [])
-
-  /*
-What it does:
- It checks AsyncStorage (your device's local storage) for a saved token under the key "token".
- If it finds a token, it calls setAuthToken(storedToken) to:Set the token back into state This triggers isAuthenticated to become true
- This keeps the user logged in across app restarts!
-
-💡 Why is it important?
-Without this useEffect, when the app restarts:The token stored in local storage is not read.Your app will think the user is logged out, even though their token is still stored.
-  */
 
   function authenticate(token) {
     setAuthToken(token);
