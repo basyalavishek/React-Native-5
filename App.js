@@ -69,7 +69,7 @@ function Navigation() {
 }
 
 function Root() {
-  const [isTryingLogin , setIsTryingLogin] = useState(true)
+  const [isTryingLogin, setIsTryingLogin] = useState(true);
   const authCtx = useContext(AuthContext);
 
   useEffect(() => {
@@ -79,13 +79,13 @@ function Root() {
       if (storedToken) {
         authCtx.authenticate(storedToken);
       }
-      setIsTryingLogin(false)
+      setIsTryingLogin(false);
     }
     fetchToken();
   }, []);
 
-  if(isTryingLogin){
-    return <AppLoading/>
+  if (isTryingLogin) {
+    return <AppLoading />;
   }
 
   return <Navigation />;

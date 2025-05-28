@@ -11,8 +11,6 @@ export const AuthContext = createContext({
 function AuthContextProvider({ children }) {
   const [authToken, setAuthToken] = useState();
 
-
-
   function authenticate(token) {
     setAuthToken(token);
     AsyncStorage.setItem("token", token);
@@ -24,6 +22,7 @@ function AuthContextProvider({ children }) {
 
   function logout() {
     setAuthToken(null);
+    AsyncStorage.removeItem("token"); // when log out the welcome screen is not shown as token is removed from "AsyncStorage"
   }
 
   const value = {
